@@ -62,7 +62,11 @@ Page({
         page: 'createMatch'
       },
       {
-        title: '加入别人的羽毛球比赛',
+        title: '加入羽毛球比赛',
+        page: 'joinMatch'
+      },
+      {
+        title: '记录羽毛球比赛',
         page: 'joinMatch'
       }]
     }],
