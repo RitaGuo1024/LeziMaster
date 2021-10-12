@@ -67,8 +67,9 @@ Page({
       },
       {
         title: '记录羽毛球比赛',
-        page: 'joinMatch'
-      }]
+        page: 'recordMatch'
+      }
+    ]
     }],
     envList,
     selectedEnv: envList[0],

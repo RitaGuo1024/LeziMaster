@@ -1,0 +1,49 @@
+<!--pages/recordMatch/index.wxml-->
+
+<view class="layoutHorizontal">
+      <text class="fontStyle">比赛对阵</text>
+    </view>
+    <view class="cols">
+      <view class="col">
+        <text>场次</text>
+      </view>
+      <view class="col">
+        <text>左1</text>
+      </view>
+      <view class="col">
+        <text>左2</text>
+      </view>
+      <view class="col">
+        <text>右1</text>
+      </view>
+      <view class="col">
+        <text>右2</text>
+      </view>
+      <view class="col">
+        <text>比分</text>
+      </view>
+    </view>
+    <view class="layoutVertical">
+      <scroll-view scroll-y="true" style="height:820rpx" bindscrolltoupper="onTopRefresh">
+        <view class="cols" wx:for="{{games}}" wx:for-index="idx" wx:for-item="itemName">
+          <view class="col">
+            <text>{{itemName.id}}</text>
+          </view>
+          <view class="col">
+            <text>{{itemName.left1}}</text>
+          </view>
+          <view class="col">
+            <text>{{itemName.left2}}</text>
+          </view>
+          <view class="col">
+            <text>{{itemName.right1}}</text>
+          </view>
+          <view class="col">
+            <text>{{itemName.right2}}</text>
+          </view>
+          <view class="col">
+            <text>{{itemName.totalLose}}</text>
+          </view>
+        </view>
+      </scroll-view>
+    </view>
