@@ -32,7 +32,6 @@ Page({
    * Lifecycle function--Called when page load
    */
   onLoad: function (options) {
-    console.log(options.envId)
     wx.cloud.callFunction({
       name: 'quickstartFunctions',
       config: {
@@ -44,7 +43,7 @@ Page({
     }).then((resp) => {
       console.log(resp)
       this.setData({
-        worldRank: resp.result.demoData,
+        worldRank: resp.result.data
       })
      wx.hideLoading()
    }).catch((e) => {

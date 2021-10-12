@@ -5,6 +5,7 @@ const selectRecord = require('./selectRecord/index')
 const updateRecord = require('./updateRecord/index')
 const sumRecord = require('./sumRecord/index')
 const getWorldRank = require('./getWorldRank/index')
+const addWorldRank = require('./addWorldRank/index')
 
 
 // 云函数入口函数
@@ -24,5 +25,7 @@ exports.main = async (event, context) => {
       return await sumRecord.main(event, context)
     case 'getWorldRank':
       return await getWorldRank.main(event, context)
+      case 'addWorldRank':
+        return await addWorldRank.main(event, context)
   }
 }
