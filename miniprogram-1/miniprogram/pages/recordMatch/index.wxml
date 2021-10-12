@@ -10,7 +10,7 @@
     </view>
   </view>
   <view class="btn-area">
-    <button type="default" bindtap="sendMatchId">开始比赛</button>
+    <button type="default" bindtap="onStartMatch">开始比赛</button>
   </view>
     <text class="fontStyle">比赛对阵</text>
     </view>
@@ -28,13 +28,13 @@
         <text>左分</text>
       </view>
       <view class="col">
+        <text>右分</text>
+      </view>
+      <view class="col">
         <text>右1</text>
       </view>
       <view class="col">
         <text>右2</text>
-      </view>
-      <view class="col">
-        <text>右分</text>
       </view>
     </view>
     <view class="layoutVertical">
