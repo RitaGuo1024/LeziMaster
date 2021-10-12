@@ -1,0 +1,26 @@
+<!--pages/createMatch/chooseMode.wxml-->
+<view class="page-body">
+  <view class="page-section">
+    <view class="page-section-title">人数</view>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell weui-cell_input">
+        <input class="weui-input"  type="number" placeholder="这是一个数字输入框" bindinput="headcount"/>
+      </view>
+    </view>
+    <view class="page-section-title">时间</view>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell weui-cell_input">
+        <input class="weui-input"  maxlength="10" bindinput="date" placeholder="这是一个输入框"/>
+      </view>
+    </view>
+    <view class="page-section-title">地点</view>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell weui-cell_input">
+        <input class="weui-input"  maxlength="10" bindinput="location" placeholder="这是一个输入框"/>
+      </view>
+    </view>
+  </view>
+  <view class="btn-area">
+    <button type="default" bindtap="creatingMatch">创建</button>
+  </view>
+</view>

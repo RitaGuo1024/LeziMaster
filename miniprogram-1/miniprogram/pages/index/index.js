@@ -64,6 +64,14 @@ Page({
       item: [{
         title: '看看世界排名',
         page: 'badminton'
+      },
+      {
+        title: '发起羽毛球比赛',
+        page: 'createMatch'
+      },
+      {
+        title: '加入别人的羽毛球比赛',
+        page: 'joinMatch'
       }]
     }],
     envList,

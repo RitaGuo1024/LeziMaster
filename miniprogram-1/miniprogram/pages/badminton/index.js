@@ -45,15 +45,13 @@ Page({
       console.log(resp)
       this.setData({
         worldRank: resp.result.demoData,
-        //worldRank: [{"name":"yizhou", "totalPoints":329, "totalWin":13, "totalLose":4, "rank":1}]
       })
      wx.hideLoading()
    }).catch((e) => {
       this.setData({
         showUploadTip: true
       })
-      console.log(e)
-      console.log("exception")
+      console.log("exception-", e)
      wx.hideLoading()
     })
   },
