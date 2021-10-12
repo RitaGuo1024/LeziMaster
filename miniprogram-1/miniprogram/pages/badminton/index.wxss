@@ -1,0 +1,25 @@
+/* pages/badminton/badminton.wxss */
+.layoutHorizontal{
+  height: 100rpx;
+  text-align: center;
+}
+.layoutVertical{
+  height: 100rpx;
+  text-align: center;
+}
+.fontStyle {
+  font-family: Fantasy;
+  font-size: 25px;
+  font-weight: bold;
+}
+.cols{
+  height: 100rpx;
+  display: flex;
+  flex-flow: row;
+  width: 100%;
+}
+.col{
+  height: 100rpx;
+  text-align: center;
+  width: 20%;
+}

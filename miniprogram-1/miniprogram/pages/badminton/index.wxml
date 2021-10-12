@@ -1,0 +1,55 @@
+<!--pages/badminton/badminton.wxml-->
+
+    <view class="layoutHorizontal">
+      <text class="fontStyle">世界排名</text>
+    </view>
+    <view class="cols">
+      <view class="col">
+        <text>排名</text>
+      </view>
+      <view class="col">
+        <text>姓名</text>
+      </view>
+      <view class="col">
+        <text>总胜点</text>
+      </view>
+      <view class="col">
+        <text>总胜场</text>
+      </view>
+      <view class="col">
+        <text>总负场</text>
+      </view>
+    </view>
+    <view class="layoutVertical">
+      <scroll-view scroll-y="true" style="height:820rpx" bindscrolltoupper="onTopRefresh">
+        <view class="cols" wx:for="{{worldRank}}" wx:for-index="idx" wx:for-item="itemName">
+          <view class="col">
+            <text>{{itemName.rank}}</text>
+          </view>
+          <view class="col">
+            <text>{{itemName.name}}</text>
+          </view>
+          <view class="col">
+            <text>{{itemName.totalPoints}}</text>
+          </view>
+          <view class="col">
+            <text>{{itemName.totalWin}}</text>
+          </view>
+          <view class="col">
+            <text>{{itemName.totalLose}}</text>
+          </view>
+        </view>
+      </scroll-view>
+    </view>
+    <view class="btn-area">
+        <navigator url="/pages/createMatch/chooseMode">
+            <button style="width:335rpx; background:#14a1fd; color:#fff; border-radius:30rpx; position:fixed; bottom:30rpx; left:30rpx">
+              创建比赛
+            </button>
+        </navigator>
+        <navigator url="/pages/joinMatch/joinMatch">
+            <button style="width:335rpx; background:#14a1fd; color:#fff; border-radius:30rpx; position:fixed; bottom:30rpx; right:30rpx">
+              加入比赛
+            </button>
+        </navigator>
+      </view>
