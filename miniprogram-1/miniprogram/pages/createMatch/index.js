@@ -43,7 +43,7 @@ Page({
     }).then((resp) => {
       console.log(resp)
       this.setData({
-        unionid: resp.result.unionid
+        unionid: resp.result.openid
       })
    }).catch((e) => {
      console.log(e)
@@ -55,12 +55,17 @@ Page({
         env: this.data.envId
       },
       data: {
-        type: 'createMatch'
+        type: 'createMatch',
+        hc: this.data.hc,
+        date: this.data.date,
+        duration: this.date.duration,
+        location: this.data.location,
+        unionid: this.data.unionid,
       }
     }).then((resp) => {
       console.log(resp)
       this.setData({
-        matchid: resp.result.matchid
+        matchid: resp.result.data.toString()
       })
    }).catch((e) => {
      console.log(e)
@@ -74,7 +79,27 @@ Page({
    * Lifecycle function--Called when page load
    */
   onLoad: function (options) {
-
+    wx.cloud.callFunction({
+      name: 'quickstartFunctions',
+      config: {
+        env: options.envId
+      },
+      data: {
+        type: 'createMatch'
+      }
+    }).then((resp) => {
+      console.log(resp)
+      this.setData({
+        worldRank: resp.result.data
+      })
+     wx.hideLoading()
+   }).catch((e) => {
+      this.setData({
+        showUploadTip: true
+      })
+      console.log("exception-", e)
+     wx.hideLoading()
+    })
   },
 
   /**
