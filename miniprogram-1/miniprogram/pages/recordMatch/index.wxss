@@ -1,10 +1,10 @@
 /* pages/recordMatch/index.wxss */
 .layoutHorizontal{
-    height: 100rpx;
+    /* height: 100rpx; */
     text-align: center;
   }
   .layoutVertical{
-    height: 100rpx;
+    /* height: 100rpx; */
     text-align: center;
   }
   .fontStyle {
@@ -13,13 +13,13 @@
     font-weight: bold;
   }
   .cols{
-    height: 100rpx;
+    /* height: 100rpx; */
     display: flex;
     flex-flow: row;
     width: 100%;
   }
   .col{
-    height: 100rpx;
+    /* height: 100rpx; */
     text-align: center;
     width: 20%;
   }

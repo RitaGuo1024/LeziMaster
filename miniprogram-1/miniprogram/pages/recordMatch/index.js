@@ -5,15 +5,35 @@ Page({
      * Page initial data
      */
     data: {
-
+        games : []
     },
 
     /**
      * Lifecycle function--Called when page load
      */
     onLoad: function (options) {
-
-    },
+        wx.cloud.callFunction({
+          name: 'quickstartFunctions',
+          config: {
+            env: options.envId
+          },
+          data: {
+            type: 'getMatchForRecording'
+          }
+        }).then((resp) => {
+          console.log("response: ", resp)
+          this.setData({
+            games: resp.result.data
+          })
+         wx.hideLoading()
+       }).catch((e) => {
+          this.setData({
+            showUploadTip: true
+          })
+          console.log("exception-", e)
+         wx.hideLoading()
+        })
+      },
 
     /**
      * Lifecycle function--Called when page is initially rendered
