@@ -11,4 +11,5 @@
   <view class="btn-area">
     <button type="default" bindtap="sendMatchId">Go</button>
   </view>
+  <view class="box_text">{{ matchInfo ? matchInfo : 'matchInfo将展示在这里' }}</view>
 </view>

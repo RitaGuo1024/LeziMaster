@@ -5,9 +5,12 @@ Page({
    * Page initial data
    */
   data: {
-    hc: "0",
-    date: '',
-    location: ''
+    hc: '',
+    date: Date,
+    duration: '',
+    location: '',
+    unionid: '',
+    matchid: ''
   },
 
   headcount: function(e){
@@ -15,16 +18,56 @@ Page({
   },
 
   date: function(e){
-    this.setData({date: e.detail.value})
+    this.setData({date: new Date(e.detail.value)})
   },
 
   location: function(e){
     this.setData({location: e.detail.value})
   },
 
+  duration: function(e){
+    this.setData({duration: e.detail.value})
+  },
+
   creatingMatch: function(e) {
     console.log("start creating match");
-    console.log(this.data.hc, this.data.date, this.data.location);
+
+    wx.cloud.callFunction({
+      name: 'quickstartFunctions',
+      config: {
+        env: this.data.envId
+      },
+      data: {
+        type: 'getOpenId'
+      }
+    }).then((resp) => {
+      console.log(resp)
+      this.setData({
+        unionid: resp.result.unionid
+      })
+   }).catch((e) => {
+     console.log(e)
+    })
+
+    wx.cloud.callFunction({
+      name: 'quickstartFunctions',
+      config: {
+        env: this.data.envId
+      },
+      data: {
+        type: 'createMatch'
+      }
+    }).then((resp) => {
+      console.log(resp)
+      this.setData({
+        matchid: resp.result.matchid
+      })
+   }).catch((e) => {
+     console.log(e)
+    })
+
+    console.log(this.data.hc, this.data.date, this.data.duration, this.data.location, this.data.unionid, this.data.matchid);
+
   },
 
   /**

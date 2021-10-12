@@ -7,10 +7,16 @@
         <input class="weui-input"  type="number" placeholder="这是一个数字输入框" bindinput="headcount"/>
       </view>
     </view>
-    <view class="page-section-title">时间</view>
+    <view class="page-section-title">日期 时间</view>
     <view class="weui-cells weui-cells_after-title">
       <view class="weui-cell weui-cell_input">
-        <input class="weui-input"  maxlength="10" bindinput="date" placeholder="这是一个输入框"/>
+        <input class="weui-input"  type="Date" bindinput="date" placeholder="YY/MM/DD xx:xx"/>
+      </view>
+    </view>
+    <view class="page-section-title">用时</view>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell weui-cell_input">
+        <input class="weui-input"  type="number" bindinput="duration" placeholder="这是一个数字输入框"/>
       </view>
     </view>
     <view class="page-section-title">地点</view>
@@ -23,4 +29,5 @@
   <view class="btn-area">
     <button type="default" bindtap="creatingMatch">创建</button>
   </view>
+  <view class="box_text">{{ matchid ? matchid : 'matchid将展示在这里' }}</view>
 </view>

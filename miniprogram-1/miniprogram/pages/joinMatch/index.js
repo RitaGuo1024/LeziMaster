@@ -6,7 +6,8 @@ Page({
    */
   data: {
     createText: "输入比赛Id",
-    matchId: ""
+    matchId: "",
+    matchInfo: ""
   },
 
   bindKeyInput: function(e){
@@ -19,6 +20,23 @@ Page({
    */
   sendMatchId: function(e){
     console.log(this.data.matchId)
+
+    wx.cloud.callFunction({
+      name: 'quickstartFunctions',
+      config: {
+        env: this.data.envId
+      },
+      data: {
+        type: 'joinMatch'
+      }
+    }).then((resp) => {
+      console.log(resp)
+      this.setData({
+        matchInfo: resp.result.matchInfo
+      })
+   }).catch((e) => {
+     console.log(e)
+    })
   },
 
   /**
