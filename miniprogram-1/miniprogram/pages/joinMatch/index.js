@@ -7,7 +7,8 @@ Page({
   data: {
     createText: "输入比赛Id",
     matchId: "",
-    matchInfo: ""
+    matchInfo: "",
+    unionid: ''
   },
 
   bindKeyInput: function(e){
@@ -27,7 +28,26 @@ Page({
         env: this.data.envId
       },
       data: {
-        type: 'joinMatch'
+        type: 'getOpenId'
+      }
+    }).then((resp) => {
+      console.log(resp)
+      this.setData({
+        unionid: resp.result.openid
+      })
+   }).catch((e) => {
+     console.log(e)
+    })
+
+    wx.cloud.callFunction({
+      name: 'quickstartFunctions',
+      config: {
+        env: this.data.envId
+      },
+      data: {
+        type: 'joinMatch',
+        unionid: this.data.unionid,
+        matchid: this.data.matchId
       }
     }).then((resp) => {
       console.log(resp)

@@ -50,14 +50,6 @@ Page({
         page: 'uploadFile'
       }]
     }, {
-      title: '云托管',
-      tip: '不限语言的全托管容器服务',
-      showItem: false,
-      item: [{
-        title: '部署服务',
-        page: 'deployService'
-      }]
-    }, {
       title: '羽毛球',
       tip: '乐子大师为您服务',
       showItem: false,

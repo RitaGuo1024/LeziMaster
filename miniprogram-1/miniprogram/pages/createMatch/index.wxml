@@ -29,5 +29,5 @@
   <view class="btn-area">
     <button type="default" bindtap="creatingMatch">创建</button>
   </view>
-  <view class="box_text">{{ matchid ? matchid : 'matchid将展示在这里' }}</view>
+  <text selectable>{{ matchid ? matchid : 'matchid将展示在这里' }}</text>
 </view>
