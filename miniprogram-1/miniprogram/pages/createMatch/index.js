@@ -65,7 +65,7 @@ Page({
     }).then((resp) => {
       console.log(resp)
       this.setData({
-        matchid: resp.result.data.toString()
+        matchid: resp.result.data
       })
    }).catch((e) => {
      console.log(e)

@@ -16,7 +16,7 @@ exports.main = async (event, context) => {
         .update({
           data: {
             sales: event.data[i].sales
-          },
+          }
         })
     }
     return {
