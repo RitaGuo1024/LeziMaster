@@ -23,8 +23,15 @@ Page({
       console.log(resp)
 
       var sortedRanks = resp.result.data.sort((a, b) => {
-        return a.rank - b.rank
+        if (a.totalPoints !== b.totalPoints) {
+          return b.totalPoints - a.totalPoints
+        } else if (a.totalWin !== b.totalWin) {
+          return b.totalWin - a.totalWin
+        } else {
+          return a.totalLose - b.totalLose
+        }
       })
+
       this.setData({
         worldRank: sortedRanks
       })

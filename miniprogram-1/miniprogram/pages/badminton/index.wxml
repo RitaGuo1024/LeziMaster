@@ -24,7 +24,7 @@
       <scroll-view scroll-y="true" style="height:820rpx" bindscrolltoupper="onTopRefresh">
         <view class="cols" wx:for="{{worldRank}}" wx:for-index="idx" wx:for-item="itemName">
           <view class="col">
-            <text>{{itemName.rank}}</text>
+            <text>{{idx}}</text>
           </view>
           <view class="col">
             <text>{{itemName.name}}</text>
