@@ -26,18 +26,9 @@ exports.main = async (event, context) => {
   var currentRankChanges = rankChanges(games)
   console.log("currentRankChanges", currentRankChanges)
   const _ = db.command
-  await db.collection("ranks").where({
-    name: "a"
-  }).update({
-    data: {
-      totalLose: _.inc(currentRankChanges["a"].totalLose),
-      totalWin: _.inc(currentRankChanges["a"].totalWin),
-      totalPoints: _.inc(currentRankChanges["a"].score)
-    }
-  })
-
+  var updatePromise = []
   for(var currentName in currentRankChanges) {
-    await db.collection("ranks").where({
+    updatePromise.push(db.collection("ranks").where({
       name: currentName
     }).update({
       data: {
@@ -45,14 +36,10 @@ exports.main = async (event, context) => {
         totalWin: _.inc(currentRankChanges[currentName].totalWin),
         totalPoints: _.inc(currentRankChanges[currentName].score)
       }
-    })
+    }))
   }
-  
-  try {
-    return await db.collection('ranks').get()
-  } catch (e) {
-    console.error(e)
-  }
+
+  return await Promise.all(updatePromise)
 }
 
 function rankChanges(games) {

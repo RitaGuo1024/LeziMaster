@@ -7,7 +7,8 @@ Page({
   data: {
     games: [],
     envId: "",
-    matchId: ""
+    matchId: "",
+    submitted: false
   },
 
   bindKeyInput: function (e) {
@@ -45,25 +46,31 @@ Page({
   },
 
   sendMatchResult: function (options) {
-    wx.cloud.callFunction({
-      name: 'quickstartFunctions',
-      config: {
-        env: this.data.envId
-      },
-      data: {
-        type: 'submitMatchResult',
-        games: this.data.games,
-        matchId: this.data.matchId
-      }
-    }).then((resp) => {
-      console.log("sendMatchResult response: ", resp)
-    }).catch((e) => {
-      this.setData({
-        showUploadTip: true
+    if (!this.data.submitted)
+    {
+      wx.cloud.callFunction({
+        name: 'quickstartFunctions',
+        config: {
+          env: this.data.envId
+        },
+        data: {
+          type: 'submitMatchResult',
+          games: this.data.games,
+          matchId: this.data.matchId
+        }
+      }).then((resp) => {
+        console.log("sendMatchResult response: ", resp)
+        this.setData({
+          submitted: true
+        })
+      }).catch((e) => {
+        this.setData({
+          showUploadTip: true
+        })
+        console.log("sendMatchResult exception-", e)
+        wx.hideLoading()
       })
-      console.log("sendMatchResult exception-", e)
-      wx.hideLoading()
-    })
+    }
   },
 
   /**
