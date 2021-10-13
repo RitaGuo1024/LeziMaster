@@ -5,7 +5,6 @@ const { envList } = require('../../envList.js')
 Page({
   data: {
     showUploadTip: false,
-    canIUse: wx.canIUse('button.open-type.getUserInfo'),
     nickName: '',
     powerList: [{
       title: '云函数',
@@ -124,31 +123,12 @@ Page({
     })
   },
 
-  onLoad: function() {
-    // View Authorization
-    wx.getSetting({
-      success (res){
-        if (res.authSetting['scope.userInfo']) {
-          // Authorized, you can directly call getUserInfo Get avatar nicknames
-          wx.getUserInfo({
-            success: function(res) {
-              console.log(res.userInfo)
-            }
-          })
-        }
-      }
-    })
-  },
-
-  bindGetUserInfo (e) {
+  onLoad: function(options) {
     this.setData({
-      nickName: e.detail.userInfo.nickName
+      nickName: options.nickName
     })
 
-    wx.navigateTo({
-      url: `/pages/subIndex/index?envId=${this.data.selectedEnv.envId}&nickName=${this.data.nickName}`,
-    })
-    console.log(e.detail.userInfo)
+    console.log(this.nickName, options)
   },
 
   onClickDatabase(powerList) {

@@ -12,7 +12,8 @@ Page({
     date: "",
     participants: [],
     unionid: '',
-    joined: Boolean
+    joined: Boolean,
+    nickName: ''
   },
 
   bindKeyInput: function(e){
@@ -50,7 +51,7 @@ Page({
       },
       data: {
         type: 'joinMatch',
-        unionid: this.data.unionid,
+        nickName: this.data.nickName,
         matchid: this.data.matchId
       }
     }).then((resp) => {
@@ -74,7 +75,9 @@ Page({
    * Lifecycle function--Called when page load
    */
   onLoad: function (options) {
-
+    this.setData({
+      nickName: options.nickName
+    })
   },
 
   /**

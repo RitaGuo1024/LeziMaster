@@ -10,7 +10,8 @@ Page({
     duration: '',
     location: '',
     unionid: '',
-    matchid: ''
+    matchid: '',
+    nickName: ''
   },
 
   headcount: function(e){
@@ -60,7 +61,7 @@ Page({
         date: this.data.date,
         duration: this.date.duration,
         location: this.data.location,
-        unionid: this.data.unionid,
+        nickName: this.data.nickName,
       }
     }).then((resp) => {
       console.log(resp)
@@ -79,27 +80,11 @@ Page({
    * Lifecycle function--Called when page load
    */
   onLoad: function (options) {
-    wx.cloud.callFunction({
-      name: 'quickstartFunctions',
-      config: {
-        env: options.envId
-      },
-      data: {
-        type: 'createMatch'
-      }
-    }).then((resp) => {
-      console.log(resp)
-      this.setData({
-        worldRank: resp.result.data
-      })
-     wx.hideLoading()
-   }).catch((e) => {
-      this.setData({
-        showUploadTip: true
-      })
-      console.log("exception-", e)
-     wx.hideLoading()
+    console.log('createMatch on load')
+    this.setData({
+      nickName: options.nickName
     })
+    console.log(this.data.nickName)
   },
 
   /**

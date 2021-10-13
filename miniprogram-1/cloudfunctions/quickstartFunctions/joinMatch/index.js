@@ -11,7 +11,7 @@ exports.main = async (event, context) => {
     var match = await db.collection('matches').where({
         uniqueId: event.matchid
     }).get()
-    match.data[0].participants.push(event.unionid)
+    match.data[0].participants.push(event.nickName)
     var updatedParticipants = match.data[0].participants
 
     await db.collection('matches').where({
