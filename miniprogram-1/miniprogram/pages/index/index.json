@@ -1,5 +1,6 @@
 {
   "usingComponents": {
-    "cloud-tip-modal": "/components/cloudTipModal/index"
+    "cloud-tip-modal": "/components/cloudTipModal/index",
+    "date-time-picker": "/components/date-time-picker/date-time-picker"
   }
 }
