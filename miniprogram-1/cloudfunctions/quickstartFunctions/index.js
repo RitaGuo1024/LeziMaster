@@ -9,6 +9,7 @@ const addWorldRank = require('./addWorldRank/index')
 const createMatch = require('./createMatch/index')
 const joinMatch = require('./joinMatch/index')
 const getMatchForRecording = require('./getMatchForRecording/index')
+const submitMatchResult = require('./submitMatchResult/index')
 
 
 // 云函数入口函数
@@ -31,10 +32,12 @@ exports.main = async (event, context) => {
     case 'addWorldRank':
       return await addWorldRank.main(event, context)
     case 'createMatch':
-        return await createMatch.main(event, context)
+      return await createMatch.main(event, context)
     case 'joinMatch':
-        return await joinMatch.main(event, context)
+      return await joinMatch.main(event, context)
     case 'getMatchForRecording':
       return await getMatchForRecording.main(event, context)
+    case 'submitMatchResult':
+      return await submitMatchResult.main(event, context)
   }
 }
