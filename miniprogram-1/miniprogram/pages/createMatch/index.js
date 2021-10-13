@@ -6,7 +6,7 @@ Page({
    */
   data: {
     hc: '',
-    date: Date,
+    value: '',
     duration: '',
     location: '',
     unionid: '',
@@ -86,6 +86,13 @@ Page({
     })
     console.log(this.data.nickName)
   },
+
+  handleChange(e) {
+    console.log(e)
+    this.setData({
+      value: e.detail.date
+    })
+},
 
   /**
    * Lifecycle function--Called when page is initially rendered

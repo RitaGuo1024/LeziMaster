@@ -3,7 +3,7 @@
 
   <view class="title">一起HAPPY: D</view>
 
-  <view class="top_tip">Rita, zhuxie, guamai</view>
+  <view class="top_tip"></view>
 
   <view class="userinfo">
     <block wx:if="{{!hasUserInfo}}">

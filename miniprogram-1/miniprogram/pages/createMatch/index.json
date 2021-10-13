@@ -1,5 +1,6 @@
 {
   "navigationBarTitleText": "创建比赛",
   "usingComponents": {
+    "date-time-picker": "/components/date-time-picker/date-time-picker"
   }
 }
