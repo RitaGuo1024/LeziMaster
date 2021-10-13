@@ -50,10 +50,10 @@
             <text>{{itemName.left2}}</text>
           </view>
           <view class="col">
-            <text>{{itemName.leftScore}}</text>
+            <input data-id="{{idx}}" value="{{itemName.leftScore}}" bindfocus="bindLeftScoreFocus" bindinput="bindLeftScoreKeyInput">0</input>
           </view>
           <view class="col">
-            <text>{{itemName.rightScore}}</text>
+            <input data-id="{{idx}}" value="{{itemName.rightScore}}" bindfocus="bindRightScoreFocus" bindinput="bindRightScoreKeyInput">0</input>
           </view>
           <view class="col">
             <text>{{itemName.right1}}</text>

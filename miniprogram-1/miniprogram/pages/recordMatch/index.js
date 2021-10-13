@@ -8,8 +8,53 @@ Page({
     games: [],
     envId: "",
     uniqueId: "",
-    submitted: false
+    submitted: false,
+    inputValue: '',
+    focusId: ''
   },
+
+  bindLeftScoreFocus: function (event) {
+    let id = event.currentTarget.dataset.id
+    console.log("trigger focus, the id: ", id)
+    this.setData({
+      focusId: id
+    })
+  },
+ 
+  bindLeftScoreKeyInput: function (event) {
+    let value = Number(event.detail.value)
+    let id = event.currentTarget.dataset.id
+  
+    var up = 'games[' + id + '].leftScore';
+    this.setData({
+      [up]:value 
+    })
+ 
+    console.log(this.data.focusId)
+    console.log(this.data.games)
+  },
+
+  bindRightScoreFocus: function (event) {
+    let id = event.currentTarget.dataset.id
+    console.log("trigger focus, the id: ", id)
+    this.setData({
+      focusId: id
+    })
+  },
+ 
+  bindRightScoreKeyInput: function (event) {
+    let value = Number(event.detail.value)
+    let id = event.currentTarget.dataset.id
+  
+    var up = 'games[' + id + '].rightScore';
+    this.setData({
+      [up]:value 
+    })
+ 
+    console.log(this.data.focusId)
+    console.log(this.data.games)
+  },
+
 
   bindKeyInput: function (e) {
     this.setData({ uniqueId: e.detail.value.toString() })
