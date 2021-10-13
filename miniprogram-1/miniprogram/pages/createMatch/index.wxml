@@ -1,33 +1,21 @@
 <!--pages/createMatch/chooseMode.wxml-->
 <view class="page-body">
-  <view class="page-section">
-    <view class="page-section-title">人数</view>
-    <view class="weui-cells weui-cells_after-title">
-      <view class="weui-cell weui-cell_input">
-        <input class="weui-input"  type="number" placeholder="这是一个数字输入框" bindinput="headcount"/>
-      </view>
-    </view>
-    <view class="page-section-title">日期 时间</view>
-    <view class="weui-cells weui-cells_after-title">
-      <view class="weui-cell weui-cell_input">
-        <input class="weui-input"  type="Date" bindinput="date" placeholder="YY/MM/DD xx:xx"/>
-      </view>
-    </view>
-    <view class="page-section-title">用时</view>
-    <view class="weui-cells weui-cells_after-title">
-      <view class="weui-cell weui-cell_input">
-        <input class="weui-input"  type="number" bindinput="duration" placeholder="这是一个数字输入框"/>
-      </view>
-    </view>
-    <view class="page-section-title">地点</view>
-    <view class="weui-cells weui-cells_after-title">
-      <view class="weui-cell weui-cell_input">
-        <input class="weui-input"  maxlength="10" bindinput="location" placeholder="这是一个输入框"/>
-      </view>
-    </view>
-  </view>
+  <mp-cells title="比赛信息" footer="时长默认为2小时">
+    <mp-cell prop="hc" title="人数" ext-class="">
+      <input bindinput="formInputChange" data-field="hc" class="weui-input" placeholder="请输入参加人数"/>
+    </mp-cell>
+    <mp-cell prop="date" title="日期" ext-class="">
+      <picker data-field="date" mode="date" value="{{date}}" start="2020-09-01" end="2020-10-01" bindchange="bindDateChange">
+        <view class="weui-input">{{date}}</view>
+      </picker>
+    </mp-cell>
+    <mp-cell prop="location" title="地点" ext-class="">
+      <input bindinput="formInputChange" data-field="location" class="weui-input" placeholder="请输入活动地点"/>
+    </mp-cell>
+  </mp-cells>
   <view class="btn-area">
     <button type="default" bindtap="creatingMatch">创建</button>
   </view>
-  <text selectable>{{ matchid ? matchid : 'matchid将展示在这里' }}</text>
+  <text user-select="true">{{ matchid ? matchid : 'matchid将展示在这里' }}</text>
+
 </view>

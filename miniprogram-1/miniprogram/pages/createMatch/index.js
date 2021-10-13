@@ -5,33 +5,30 @@ Page({
    * Page initial data
    */
   data: {
-    hc: '',
-    date: Date,
-    duration: '',
-    location: '',
     unionid: '',
     matchid: '',
-    nickName: ''
+    nickName: '',
+    formData: {
+
+    },
   },
 
-  headcount: function(e){
-    this.setData({hc: e.detail.value})
-  },
-
-  date: function(e){
-    this.setData({date: new Date(e.detail.value)})
-  },
-
-  location: function(e){
-    this.setData({location: e.detail.value})
-  },
-
-  duration: function(e){
-    this.setData({duration: e.detail.value})
-  },
+  formInputChange(e) {
+    const {field} = e.currentTarget.dataset
+    this.setData({
+        [`formData.${field}`]: e.detail.value
+    })
+},
+  bindDateChange: function (e) {
+    this.setData({
+        date: e.detail.value,
+        [`formData.date`]: e.detail.value
+    })
+},
 
   creatingMatch: function(e) {
     console.log("start creating match");
+    console.log(this.data.formData)
 
     wx.cloud.callFunction({
       name: 'quickstartFunctions',
@@ -57,10 +54,9 @@ Page({
       },
       data: {
         type: 'createMatch',
-        hc: this.data.hc,
-        date: this.data.date,
-        duration: this.date.duration,
-        location: this.data.location,
+        hc: this.data.formData.hc,
+        date: this.data.formData.date,
+        location: this.data.formData.location,
         nickName: this.data.nickName,
       }
     }).then((resp) => {
