@@ -11,5 +11,5 @@
   <view class="btn-area">
     <button type="default" bindtap="sendMatchId">Join</button>
   </view>
-  <text selectable="true">{{ matchInfo ? matchInfo : 'matchInfo将展示在这里' }}</text>
+  <text selectable="true">{{ joined ? '恭喜你已加入！' : '你还没有加入任何一个比赛>.<' }}</text>
 </view>

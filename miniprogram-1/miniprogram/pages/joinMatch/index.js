@@ -7,8 +7,12 @@ Page({
   data: {
     createText: "输入比赛Id",
     matchId: "",
-    matchInfo: "",
-    unionid: ''
+    hc: "",
+    location: "",
+    date: "",
+    participants: [],
+    unionid: '',
+    joined: Boolean
   },
 
   bindKeyInput: function(e){
@@ -52,9 +56,16 @@ Page({
     }).then((resp) => {
       console.log(resp)
       this.setData({
-        matchInfo: resp.result.matchInfo
+        date: resp.result.data.date,
+        location: resp.result.data.location,
+        hc: resp.result.data.headcount,
+        participants: resp.result.data.participants,
+        joined: true
       })
    }).catch((e) => {
+     this.setData({
+       joined: false
+     })
      console.log(e)
     })
   },
