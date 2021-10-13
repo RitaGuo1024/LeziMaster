@@ -66,4 +66,5 @@
     </view>
     <view class="btn-area">
     <button type="default" bindtap="sendMatchResult">提交结果</button>
+    <text selectable="true">{{ submitted ? '比赛结束，结果已提交' : '比赛正在进行中' }}</text>
   </view>
