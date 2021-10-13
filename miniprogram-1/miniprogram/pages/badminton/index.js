@@ -21,9 +21,15 @@ Page({
       }
     }).then((resp) => {
       console.log(resp)
-      this.setData({
-        worldRank: resp.result.data
+
+      var sortedRanks = resp.result.data.sort((a, b) => {
+        return a.rank - b.rank
       })
+      this.setData({
+        worldRank: sortedRanks
+      })
+      
+      console.log(this.data.worldRank)
      wx.hideLoading()
    }).catch((e) => {
       this.setData({
