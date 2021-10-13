@@ -11,10 +11,11 @@ Page({
   },
 
   bindKeyInput: function (e) {
-    this.setData({ matchId: e.detail.value })
+    this.setData({ matchId: e.detail.value.toString() })
   },
 
   onStartMatch: function (options) {
+    console.log("matchId: ", this.data.matchId)
     wx.cloud.callFunction({
       name: 'quickstartFunctions',
       config: {
@@ -22,7 +23,7 @@ Page({
       },
       data: {
         type: 'getMatchForRecording',
-        matchId: this.data.matchId
+        matchId: this.data.matchId.toString()
       }
     }).then((resp) => {
       console.log("response: ", resp)
@@ -39,6 +40,28 @@ Page({
         showUploadTip: true
       })
       console.log("exception-", e)
+      wx.hideLoading()
+    })
+  },
+
+  sendMatchResult: function (options) {
+    wx.cloud.callFunction({
+      name: 'quickstartFunctions',
+      config: {
+        env: this.data.envId
+      },
+      data: {
+        type: 'submitMatchResult',
+        games: this.data.games,
+        matchId: this.data.matchId
+      }
+    }).then((resp) => {
+      console.log("sendMatchResult response: ", resp)
+    }).catch((e) => {
+      this.setData({
+        showUploadTip: true
+      })
+      console.log("sendMatchResult exception-", e)
       wx.hideLoading()
     })
   },
