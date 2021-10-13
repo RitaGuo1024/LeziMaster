@@ -8,6 +8,6 @@ const db = cloud.database()
 // 获取openId云函数入口函数
 exports.main = async (event, context) => {
   return await db.collection('matches').where({
-    matchId:event.matchId
+    uniqueId:event.uniqueId
   }).get()
 }

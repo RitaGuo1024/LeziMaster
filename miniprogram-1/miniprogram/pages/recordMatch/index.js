@@ -7,16 +7,16 @@ Page({
   data: {
     games: [],
     envId: "",
-    matchId: "",
+    uniqueId: "",
     submitted: false
   },
 
   bindKeyInput: function (e) {
-    this.setData({ matchId: e.detail.value.toString() })
+    this.setData({ uniqueId: e.detail.value.toString() })
   },
 
   onStartMatch: function (options) {
-    console.log("matchId: ", this.data.matchId)
+    console.log("matchId: ", this.data.uniqueId)
     wx.cloud.callFunction({
       name: 'quickstartFunctions',
       config: {
@@ -24,13 +24,13 @@ Page({
       },
       data: {
         type: 'getMatchForRecording',
-        matchId: this.data.matchId.toString()
+        uniqueId: this.data.uniqueId.toString()
       }
     }).then((resp) => {
       console.log("response: ", resp)
       var selectedMatch = resp.result.data[0]
       console.log(selectedMatch)
-      var generatedGames = generateGames(selectedMatch.participants, this.data.matchId)
+      var generatedGames = generateGames(selectedMatch.participants, this.data.uniqueId)
       console.log("generated games:", generatedGames)
       this.setData({
         games: generatedGames
@@ -56,7 +56,7 @@ Page({
         data: {
           type: 'submitMatchResult',
           games: this.data.games,
-          matchId: this.data.matchId
+          uniqueId: this.data.uniqueId
         }
       }).then((resp) => {
         console.log("sendMatchResult response: ", resp)
@@ -150,7 +150,7 @@ function shuffle(array) {
   return array;
 }
 
-function generateGames(array, matchId) {
+function generateGames(array, uniqueId) {
   var result = []
   if (array.length === 5) {
     var a = shuffle(array)
@@ -163,7 +163,7 @@ function generateGames(array, matchId) {
         "right1": a[2],
         "right2": a[3],
         "rightScore": 0,
-        "matchId": matchId,
+        "uniqueId": uniqueId,
         "number": 1
       }, {
         "left1": a[2],
@@ -172,7 +172,7 @@ function generateGames(array, matchId) {
         "right1": a[1],
         "right2": a[3],
         "rightScore": 0,
-        "matchId": matchId,
+        "uniqueId": uniqueId,
         "number": 2
       }, {
         "left1": a[1],
@@ -181,7 +181,7 @@ function generateGames(array, matchId) {
         "right1": a[0],
         "right2": a[3],
         "rightScore": 0,
-        "matchId": matchId,
+        "uniqueId": uniqueId,
         "number": 3
       }, {
         "left1": a[1],
@@ -190,7 +190,7 @@ function generateGames(array, matchId) {
         "right1": a[0],
         "right2": a[4],
         "rightScore": 0,
-        "matchId": matchId,
+        "uniqueId": uniqueId,
         "number": 4
       }, {
         "left1": a[0],
@@ -199,8 +199,41 @@ function generateGames(array, matchId) {
         "right1": a[3],
         "right2": a[4],
         "rightScore": 0,
-        "matchId": matchId,
+        "uniqueId": uniqueId,
         "number": 5
+      }]
+    console.log("Generated games: ", result)
+  } else if (array.length === 4) {
+    var a = shuffle(array)
+    console.log("shuffled array", a)
+    result = [
+      {
+        "left1": a[0],
+        "left2": a[1],
+        "leftScore": 0,
+        "right1": a[2],
+        "right2": a[3],
+        "rightScore": 0,
+        "uniqueId": uniqueId,
+        "number": 1
+      }, {
+        "left1": a[1],
+        "left2": a[2],
+        "leftScore": 0,
+        "right1": a[0],
+        "right2": a[3],
+        "rightScore": 0,
+        "uniqueId": uniqueId,
+        "number": 2
+      }, {
+        "left1": a[1],
+        "left2": a[3],
+        "leftScore": 0,
+        "right1": a[0],
+        "right2": a[2],
+        "rightScore": 0,
+        "uniqueId": uniqueId,
+        "number": 3
       }]
     console.log("Generated games: ", result)
   }

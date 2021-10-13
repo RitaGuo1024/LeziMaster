@@ -5,18 +5,19 @@ cloud.init({
 })
 
 const db = cloud.database()
+const _ = db.command
 
 // 获取openId云函数入口函数
 exports.main = async (event, context) => {
   var games = event.games
-  var matchId = event.matchId
+  var uniqueId = event.uniqueId
   console.log("resultGames", games)
   try {
     await db.collection('games').add({
       // data 字段表示需新增的 JSON 数据
       data: {
         "games": games,
-        "matchId": matchId
+        "uniqueId": uniqueId
       }
     })
   } catch (e) {
@@ -25,18 +26,33 @@ exports.main = async (event, context) => {
 
   var currentRankChanges = rankChanges(games)
   console.log("currentRankChanges", currentRankChanges)
-  const _ = db.command
+  
   var updatePromise = []
   for(var currentName in currentRankChanges) {
-    updatePromise.push(db.collection("ranks").where({
-      name: currentName
-    }).update({
-      data: {
-        totalLose: _.inc(currentRankChanges[currentName].totalLose),
-        totalWin: _.inc(currentRankChanges[currentName].totalWin),
-        totalPoints: _.inc(currentRankChanges[currentName].score)
-      }
-    }))
+    var currentUserRankItem = (await db.collection("ranks").where({name: currentName}).get()).data
+    console.log("currentUserRankItem", currentUserRankItem)
+    if (currentUserRankItem.length > 0) {
+      updatePromise.push(db.collection("ranks").where({
+        name: currentName
+      }).update({
+        data: {
+          totalLose: _.inc(currentRankChanges[currentName].totalLose),
+          totalWin: _.inc(currentRankChanges[currentName].totalWin),
+          totalPoints: _.inc(currentRankChanges[currentName].score)
+        }
+      }))
+    } else {
+      updatePromise.push(
+        db.collection("ranks").add({
+          data: {
+            name: currentName,
+            totalLose: currentRankChanges[currentName].totalLose,
+            totalWin: currentRankChanges[currentName].totalWin,
+            totalPoints: currentRankChanges[currentName].score
+          }
+        })
+      )
+    }
   }
 
   return await Promise.all(updatePromise)
