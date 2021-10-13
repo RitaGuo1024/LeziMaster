@@ -1,6 +1,8 @@
 {
   "navigationBarTitleText": "创建比赛",
   "usingComponents": {
-    "date-time-picker": "/components/date-time-picker/date-time-picker"
+    "date-time-picker": "/components/date-time-picker/date-time-picker",
+    "mp-cells": "weui-miniprogram/cells/cells",
+    "mp-cell": "weui-miniprogram/cell/cell"
   }
 }

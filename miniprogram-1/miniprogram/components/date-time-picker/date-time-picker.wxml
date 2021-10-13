@@ -1,4 +1,3 @@
-Select Start Time
 <picker mode="multiSelector" class="{{className}}" name="{{name}}" value="{{multiSelectdArray}}" range="{{multiDateTime}}" bindcolumnchange="handleColumnChange" bindchange="handleValueChange" bindcancel="handleCancel">
   <slot></slot>
 </picker>
