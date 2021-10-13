@@ -9,22 +9,22 @@ const db = cloud.database()
 exports.main = async (event, context) => {
   try {
     var match = await db.collection('matches').where({
-        uniqueId: event.matchId
+        uniqueId: event.matchid
     }).get()
-    var participants = match.participants.push(event.unionid)
-    match.participants = participants
+    match.data[0].participants.push(event.unionid)
+    var updatedParticipants = match.data[0].participants
 
     await db.collection('matches').where({
-        uniqueId: event.matchId
+        uniqueId: event.matchid
       })
         .update({
           data: {
-            matches: match
+            participants: updatedParticipants
           }
         })
     return {
       success: true,
-      data: match
+      data: match.data[0]
     }
   } catch (e) {
     return {
