@@ -6,6 +6,9 @@ Page({
   data: {
     showUploadTip: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
+    userInfo: {},
+    hasUserInfo: false,
+    canIUseGetUserProfile: false,
     nickName: '',
     powerList: [{
       title: '云函数',
@@ -125,17 +128,28 @@ Page({
   },
 
   onLoad: function() {
-    // View Authorization
-    wx.getSetting({
-      success (res){
-        if (res.authSetting['scope.userInfo']) {
-          // Authorized, you can directly call getUserInfo Get avatar nicknames
-          wx.getUserInfo({
-            success: function(res) {
-              console.log(res.userInfo)
-            }
-          })
-        }
+    if (wx.getUserProfile) {
+      this.setData({
+        canIUseGetUserProfile: true
+      })
+    }
+  },
+
+  getUserProfile(e) {
+    // 推荐使用wx.getUserProfile获取用户信息，开发者每次通过该接口获取用户个人信息均需用户确认
+    // 开发者妥善保管用户快速填写的头像昵称，避免重复弹窗
+    wx.getUserProfile({
+      desc: '用于完善会员资料', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
+      success: (res) => {
+        this.setData({
+          userInfo: res.userInfo,
+          nickName: res.userInfo.nickName,
+          hasUserInfo: true
+        })
+
+        wx.navigateTo({
+          url: `/pages/subIndex/index?envId=${this.data.selectedEnv.envId}&nickName=${this.data.nickName}`,
+        })
       }
     })
   },
