@@ -21,6 +21,7 @@ exports.main = async (event, context) => {
         duration: event.duration,
         location: event.location,
         participants: participants,
+        finished: false
     }
   })
   return {
