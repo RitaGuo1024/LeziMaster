@@ -11,7 +11,6 @@ exports.main = async (event, context) => {
   try {
       console.log(event)
     var participants = []
-    participants.push(event.nickName)
     var dateNow = Date.now().toString()
    await db.collection('matches').add({
     // data 字段表示需新增的 JSON 数据
