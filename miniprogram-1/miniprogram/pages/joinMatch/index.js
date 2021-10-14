@@ -6,10 +6,12 @@ Page({
    */
   data: {
     createText: "输入比赛Id",
-    matchId: "",
+    matchId: '',
     joined: Boolean,
     nickName: '',
-    respTxt: ''
+    respTxt: '',
+    matches: [],
+    focusId: ''
   },
 
   bindKeyInput: function(e){
@@ -53,6 +55,46 @@ Page({
   onLoad: function (options) {
     this.setData({
       nickName: options.nickName
+    })
+    console.log("calling getMatches")
+
+    wx.cloud.callFunction({
+      name: 'quickstartFunctions',
+      config: {
+        env: this.data.envId
+      },
+      data: {
+        type: 'getMatches'
+      }
+    }).then((resp) => {
+      console.log(resp)
+      this.setData({
+        matches: resp.result.data
+      })
+   }).catch((e) => {
+     console.log(e)
+    })
+  },
+
+  checkboxChange(e) {
+    console.log('checkbox发生change事件，携带value值为：', e.detail.value)
+
+    const items = this.data.matches
+    const values = e.detail.value
+    for (let i = 0, lenI = items.length; i < lenI; ++i) {
+      items[i].checked = false
+
+      for (let j = 0, lenJ = values.length; j < lenJ; ++j) {
+        if (items[i].value === values[j]) {
+          items[i].checked = true
+          break
+        }
+      }
+    }
+
+    this.setData({
+      items: items,
+      matchId: e.detail.value
     })
   },
 

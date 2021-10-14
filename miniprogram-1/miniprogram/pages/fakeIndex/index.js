@@ -23,6 +23,10 @@ Page({
         page: 'joinMatch'
       },
       {
+        title: '我的羽毛球比赛',
+        page: 'myMatch'
+      },
+      {
         title: '记录羽毛球比赛',
         page: 'recordMatch'
       }
