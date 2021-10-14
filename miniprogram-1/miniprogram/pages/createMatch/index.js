@@ -12,7 +12,8 @@ Page({
     formData: {
 
     },
-    array: ['4', '5'],
+    number: ['4', '5'],
+    location: ['独墅湖体育馆', '奥体', 'Bio GYM'],
     index: 0
   },
 

@@ -1,24 +1,27 @@
 <!--pages/createMatch/chooseMode.wxml-->
 <view class="page-body">
   <mp-cells title="比赛信息" footer="时长默认为2小时">
-    <mp-cell prop="hc" title="人数:" ext-class="">
-      <!-- <input bindinput="formInputChange" data-field="hc" class="weui-input" placeholder="请输入参加人数"/> -->
-      <picker bindchange="formInputChange" value="{{index}}" range="{{array}}">
+    <mp-cell prop="hc" title="活动人数:" ext-class="">
+      <picker bindchange="formInputChange" value="{{index}}" range="{{number}}">
         <view class="picker">
-          {{array[index]}}
+          {{number[index]}}
         </view>
       </picker>
     </mp-cell>
     <mp-cell prop="date" title="活动" ext-class="">
-      <date-time-picker value="{{date}}" startYear="2021" endYear="2022" bind:change="handleChange">日期{{date}}</date-time-picker>
+      <date-time-picker value="{{date}}" startYear="2021" endYear="2022" bind:change="handleChange">日期：{{date}}</date-time-picker>
     </mp-cell>
-    <mp-cell prop="location" title="地点:" ext-class="">
-      <input bindinput="formInputChange" data-field="location" class="weui-input" placeholder="请输入活动地点"/>
+    <mp-cell prop="location" title="活动地点:" ext-class="">
+      <picker bindchange="formInputChange" value="{{index}}" range="{{location}}">
+        <view class="picker">
+          {{location[index]}}
+        </view>
+      </picker>
     </mp-cell>
   </mp-cells>
   <view class="btn-area">
     <button type="default" bindtap="creatingMatch">创建</button>
   </view>
-  <text user-select="true">{{ matchid ? matchid : 'matchid将展示在这里' }}</text>
+  <text user-select="true">{{ matchid ? matchid : 'matchid将展示在这里， 长按复制分享吧[]~(￣▽￣)~*' }}</text>
 
 </view>

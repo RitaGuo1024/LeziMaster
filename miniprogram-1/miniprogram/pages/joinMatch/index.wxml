@@ -11,5 +11,5 @@
   <view class="btn-area">
     <button type="default" bindtap="sendMatchId">Join</button>
   </view>
-  <text selectable="true">{{ joined ? respTxt : '你还没有加入任何一个比赛>.<' }}</text>
+  <text selectable="true">{{ joined ? respTxt : '赶快加入🏸比赛吧！' }}</text>
 </view>

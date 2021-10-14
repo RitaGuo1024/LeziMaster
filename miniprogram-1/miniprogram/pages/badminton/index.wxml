@@ -1,7 +1,7 @@
 <!--pages/badminton/badminton.wxml-->
 
     <view class="layoutHorizontal">
-      <text class="fontStyle">世界排名</text>
+      <text class="fontStyle">世界排名🏆</text>
     </view>
     <view class="cols">
       <view class="col">
