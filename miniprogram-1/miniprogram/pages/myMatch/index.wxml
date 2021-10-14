@@ -9,6 +9,7 @@
             <view class="weui-cell__bd">{{item.date}}</view>
             <view class="weui-cell__bd">{{item.location}}</view>
             <view class="weui-cell__bd">{{item.headcount}}</view>
+            <view class="weui-cell__bd">{{item.participants}}</view>
             <text user-select="true">{{item.uniqueId}}</text>
           </label>
       </view>
