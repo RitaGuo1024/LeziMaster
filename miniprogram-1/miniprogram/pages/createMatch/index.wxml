@@ -1,8 +1,8 @@
 <!--pages/createMatch/chooseMode.wxml-->
 <view class="page-body">
   <mp-cells title="比赛信息" footer="时长默认为2小时">
-    <mp-cell prop="hc" title="活动人数:" ext-class="">
-      <picker bindchange="formInputChange" value="{{index}}" range="{{number}}">
+    <mp-cell prop="hc" title="活动人数：" ext-class="">
+      <picker bind:change="formInputChange" value="{{number[index]}}" range="{{number}}">
         <view class="picker">
           {{number[index]}}
         </view>
@@ -11,10 +11,10 @@
     <mp-cell prop="date" title="活动" ext-class="">
       <date-time-picker value="{{date}}" startYear="2021" endYear="2022" bind:change="handleChange">日期：{{date}}</date-time-picker>
     </mp-cell>
-    <mp-cell prop="location" title="活动地点:" ext-class="">
-      <picker bindchange="formInputChange" value="{{index}}" range="{{location}}">
+    <mp-cell prop="location" title="活动地点：" ext-class="">
+      <picker bind:change="locationInputChange" value="{{location[locationIndex]}}" range="{{location}}">
         <view class="picker">
-          {{location[index]}}
+          {{location[locationIndex]}}
         </view>
       </picker>
     </mp-cell>

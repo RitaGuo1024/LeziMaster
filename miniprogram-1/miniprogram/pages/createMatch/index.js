@@ -9,27 +9,30 @@ Page({
     unionid: '',
     matchid: '',
     nickName: '',
-    formData: {
-
-    },
+    date: '',
     number: ['4', '5'],
     location: ['独墅湖体育馆', '奥体', 'Bio GYM'],
-    index: 0
+    index: 0,
+    locationIndex: 0,
+    formData: {
+      'hc': '4',
+      'location': '独墅湖体育馆'
+    },
   },
 
   formInputChange(e) {
-    const {field} = e.currentTarget.dataset
+    console.log(this.data.number[e.detail.value])
     this.setData({
-        [`formData.${field}`]: e.detail.value,
+      [`formData.hc`]: this.data.number[e.detail.value],
         index: e.detail.value
     })
-},
-  bindDateChange: function (e) {
+  },
+  locationInputChange(e) {
     this.setData({
-        date: e.detail.value,
-        [`formData.date`]: e.detail.date
+        [`formData.location`]: this.data.location[e.detail.value],
+        locationIndex: e.detail.value
     })
-},
+  },
 
   creatingMatch: function(e) {
     console.log("start creating match");
@@ -60,7 +63,7 @@ Page({
       data: {
         type: 'createMatch',
         hc: this.data.formData.hc,
-        date: this.data.formData.date,
+        date: this.data.date,
         location: this.data.formData.location,
         nickName: this.data.nickName,
       }
