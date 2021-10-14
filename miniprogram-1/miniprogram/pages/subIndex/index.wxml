@@ -3,7 +3,7 @@
 
 <view class="title">一起HAPPY🎉</view>
 
-<view class="top_tip">Rita, zhuxie, guamai</view>
+<view class="top_tip">这个人很懒，什么也没留下</view>
 
 <view class="power" wx:key="title" wx:for="{{powerList}}" wx:for-item="power">
   <view class="power_info" data-index="{{index}}" bindtap="onClickPowerInfo">

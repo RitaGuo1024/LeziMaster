@@ -9,7 +9,7 @@
     </view>
   </view>
   <view class="btn-area">
-    <button type="default" bindtap="sendMatchId">Join</button>
+    <button type="default" bindtap="sendMatchId" style="position: relative; left: -10rpx; top: -4rpx">Join</button>
   </view>
   <text selectable="true">{{ joined ? respTxt : '赶快加入🏸比赛吧！' }}</text>
 </view>
