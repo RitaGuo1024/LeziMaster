@@ -1,19 +1,18 @@
 <!--pages/createMatch/chooseMode.wxml-->
 <view class="page-body">
   <mp-cells title="比赛信息" footer="时长默认为2小时">
-    <mp-cell prop="hc" title="人数" ext-class="">
-      <input bindinput="formInputChange" data-field="hc" class="weui-input" placeholder="请输入参加人数"/>
+    <mp-cell prop="hc" title="人数:" ext-class="">
+      <!-- <input bindinput="formInputChange" data-field="hc" class="weui-input" placeholder="请输入参加人数"/> -->
+      <picker bindchange="formInputChange" value="{{index}}" range="{{array}}">
+        <view class="picker">
+          {{array[index]}}
+        </view>
+      </picker>
     </mp-cell>
     <mp-cell prop="date" title="活动" ext-class="">
       <date-time-picker value="{{date}}" startYear="2021" endYear="2022" bind:change="handleChange">日期{{date}}</date-time-picker>
     </mp-cell>
-
-    <!-- <mp-cell prop="date" title="日期" ext-class="">
-      <picker data-field="date" mode="date" value="{{date}}" start="2020-09-01" end="2020-10-01" bindchange="bindDateChange">
-        <view class="weui-input">{{date}}</view>
-      </picker>
-    </mp-cell> -->
-    <mp-cell prop="location" title="地点" ext-class="">
+    <mp-cell prop="location" title="地点:" ext-class="">
       <input bindinput="formInputChange" data-field="location" class="weui-input" placeholder="请输入活动地点"/>
     </mp-cell>
   </mp-cells>

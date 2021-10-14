@@ -12,12 +12,15 @@ Page({
     formData: {
 
     },
+    array: ['4', '5'],
+    index: 0
   },
 
   formInputChange(e) {
     const {field} = e.currentTarget.dataset
     this.setData({
-        [`formData.${field}`]: e.detail.value
+        [`formData.${field}`]: e.detail.value,
+        index: e.detail.value
     })
 },
   bindDateChange: function (e) {

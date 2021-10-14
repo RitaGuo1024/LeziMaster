@@ -7,13 +7,9 @@ Page({
   data: {
     createText: "输入比赛Id",
     matchId: "",
-    hc: "",
-    location: "",
-    date: "",
-    participants: [],
-    unionid: '',
     joined: Boolean,
-    nickName: ''
+    nickName: '',
+    respTxt: ''
   },
 
   bindKeyInput: function(e){
@@ -33,23 +29,6 @@ Page({
         env: this.data.envId
       },
       data: {
-        type: 'getOpenId'
-      }
-    }).then((resp) => {
-      console.log(resp)
-      this.setData({
-        unionid: resp.result.openid
-      })
-   }).catch((e) => {
-     console.log(e)
-    })
-
-    wx.cloud.callFunction({
-      name: 'quickstartFunctions',
-      config: {
-        env: this.data.envId
-      },
-      data: {
         type: 'joinMatch',
         nickName: this.data.nickName,
         matchid: this.data.matchId
@@ -57,11 +36,8 @@ Page({
     }).then((resp) => {
       console.log(resp)
       this.setData({
-        date: resp.result.data.date,
-        location: resp.result.data.location,
-        hc: resp.result.data.headcount,
-        participants: resp.result.data.participants,
-        joined: true
+        joined: true,
+        respTxt: resp.result.data
       })
    }).catch((e) => {
      this.setData({
