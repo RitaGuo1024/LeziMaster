@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/fakeIndex/index",
     "pages/index/index",
     "pages/badminton/index",
     "pages/recordMatch/index",
@@ -15,6 +16,6 @@
   "sitemapLocation": "sitemap.json",
   "style": "v2",
   "useExtendedLib": {
-      "weui": true
+    "weui": true
   }
 }
