@@ -5,16 +5,12 @@
   <view class="layoutVertical">
       <scroll-view scroll-y="true" style="height:820rpx" bindscrolltoupper="onTopRefresh">
         <view class="weui-cells weui-cells_after-title">
-        <radio-group bindchange="checkboxChange">
           <label class="weui-cell weui-check__label" wx:for="{{matches}}" wx:key="{{item.uniqueId}}">
-            <view class="weui-cell__hd">
-              <radio value="{{item.uniqueId}}" checked="{{item.checked}}"/>
-            </view>
             <view class="weui-cell__bd">{{item.date}}</view>
             <view class="weui-cell__bd">{{item.location}}</view>
             <view class="weui-cell__bd">{{item.headcount}}</view>
+            <text user-select="true">{{item.uniqueId}}</text>
           </label>
-        </radio-group>
       </view>
       </scroll-view>
     </view>

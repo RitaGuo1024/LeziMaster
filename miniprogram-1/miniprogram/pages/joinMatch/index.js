@@ -64,7 +64,8 @@ Page({
         env: this.data.envId
       },
       data: {
-        type: 'getMatches'
+        type: 'getMatches',
+        nickName: this.data.nickName
       }
     }).then((resp) => {
       console.log(resp)

@@ -8,9 +8,9 @@
     </view>
   </view> -->
 
-  <text selectable="true">{{ joined ? respTxt : '赶快加入🏸比赛吧！' }}</text>
+  <view class="layoutVertical" wx:if="{{matches.length>0}}">
+    <text selectable="true">{{ joined ? respTxt : '赶快加入🏸比赛吧！' }}</text>
 
-  <view class="layoutVertical">
       <scroll-view scroll-y="true" style="height:820rpx" bindscrolltoupper="onTopRefresh">
         <view class="weui-cells weui-cells_after-title">
         <radio-group bindchange="checkboxChange">
@@ -25,9 +25,13 @@
         </radio-group>
       </view>
       </scroll-view>
-    </view>
 
-    <view class="btn-area">
-      <button type="default" bindtap="sendMatchId" style="position: relative; left: -10rpx; top: -4rpx">Join</button>
+      <view class="btn-area">
+        <button type="default" bindtap="sendMatchId" style="position: relative; left: -10rpx; top: -4rpx">Join</button>
+      </view>
+    </view>
+    
+    <view wx:else>
+      <text>没有你能加入的比赛哦，赶快去创建一个吧😎</text>
     </view>
 </view>
