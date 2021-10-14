@@ -10,6 +10,8 @@ const createMatch = require('./createMatch/index')
 const joinMatch = require('./joinMatch/index')
 const getMatchForRecording = require('./getMatchForRecording/index')
 const submitMatchResult = require('./submitMatchResult/index')
+const getMatches = require('./getMatches/index')
+const getMyMatches = require('./getMyMatches/index')
 
 
 // 云函数入口函数
@@ -39,5 +41,9 @@ exports.main = async (event, context) => {
       return await getMatchForRecording.main(event, context)
     case 'submitMatchResult':
       return await submitMatchResult.main(event, context)
+    case 'getMatches':
+      return await getMatches.main(event, context)
+    case 'getMyMatches':
+      return await getMyMatches.main(event, context)
   }
 }

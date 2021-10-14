@@ -55,6 +55,15 @@ exports.main = async (event, context) => {
     }
   }
 
+  await db.collection('matches').where({
+    uniqueId: event.uniqueId
+    })
+      .update({
+        data: {
+          finished: true
+        }
+      })
+
   return await Promise.all(updatePromise)
 }
 

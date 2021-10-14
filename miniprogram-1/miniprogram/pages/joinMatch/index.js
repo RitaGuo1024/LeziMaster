@@ -65,7 +65,11 @@ Page({
       },
       data: {
         type: 'getMatches',
+<<<<<<< Updated upstream
         nickName: this.data.nickName
+=======
+        nickName: this.data.nickName,
+>>>>>>> Stashed changes
       }
     }).then((resp) => {
       console.log(resp)
