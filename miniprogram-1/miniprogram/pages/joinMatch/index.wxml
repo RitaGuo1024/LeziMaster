@@ -1,13 +1,5 @@
 <!--pages/joinMatch/joinMatch.wxml-->
 <view class="page-body">
-  <!-- <view class="page-section">
-    <view class="weui-cells weui-cells_after-title">
-      <view class="weui-cell weui-cell_input">
-        <input class="weui-input" bindinput="bindKeyInput" placeholder="这是一个输入框"/>
-      </view>
-    </view>
-  </view> -->
-
   <view class="layoutVertical" wx:if="{{matches.length>0}}">
     <text selectable="true">{{ joined ? respTxt : '赶快加入🏸比赛吧！' }}</text>
 

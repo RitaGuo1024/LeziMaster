@@ -10,7 +10,7 @@ const db = cloud.database()
 exports.main = async (event, context) => {
   try {
       var validMatches = await db.collection('matches').where({
-          finished: false,
+          finished: event.finished,
           //participants: _.length.lt(headcount),
           //participants: !_.includes(event.nickName)
         }).get()

@@ -1,17 +1,28 @@
 <!--pages/recordMatch/index.wxml-->
 
 <view class="layoutHorizontal">
-  <view class="page-section">
-    <view class="page-section-title">比赛Id</view>
-    <view class="weui-cells weui-cells_after-title">
-      <view class="weui-cell weui-cell_input">
-        <input class="weui-input" bindinput="bindKeyInput" placeholder="这是一个输入框"/>
+
+  <view class="layoutVertical" wx:if="{{matches.length>0}}">
+    <scroll-view scroll-y="true" style="height:820rpx" bindscrolltoupper="onTopRefresh">
+      <view class="weui-cells weui-cells_after-title">
+      <radio-group bindchange="checkboxChange">
+        <label class="weui-cell weui-check__label" wx:for="{{matches}}" wx:key="{{item.uniqueId}}">
+          <view class="weui-cell__hd">
+            <radio value="{{item.uniqueId}}" checked="{{item.checked}}"/>
+          </view>
+          <view class="weui-cell__bd">{{item.date}}</view>
+          <view class="weui-cell__bd">{{item.location}}</view>
+          <view class="weui-cell__bd">{{item.headcount}}</view>
+        </label>
+      </radio-group>
       </view>
+      </scroll-view>
     </view>
-  </view>
+
   <view class="btn-area">
     <button type="default" bindtap="onStartMatch">开始比赛</button>
   </view>
+
     <text class="fontStyle">比赛对阵</text>
     </view>
     <view class="cols">

@@ -10,7 +10,8 @@ Page({
     uniqueId: "",
     submitted: false,
     inputValue: '',
-    focusId: ''
+    focusId: '',
+    matches: []
   },
 
   bindLeftScoreFocus: function (event) {
@@ -76,13 +77,23 @@ Page({
       var selectedMatch = resp.result.data[0]
       console.log(selectedMatch)
       if (selectedMatch.finished) {
-        var generatedGames = generateGames(selectedMatch.participants, this.data.uniqueId)
-        console.log("generated games:", generatedGames)
-        this.setData({
-          games: generatedGames
-        })
-      }
-      else {
+        wx.cloud.callFunction({
+          name: 'quickstartFunctions',
+          config: {
+            env: this.data.envId
+          },
+          data: {
+            type: 'getMyGamesByMatchId',
+            uniqueId: this.data.uniqueId.toString()
+          }
+        }).then((resp) => {
+          var finishedGames = resp.result.data[0]
+          console.log("finsihed games:", finishedGames)
+          this.setData({
+            games: finishedGames.games,
+            submitted: true
+          })})
+      } else {
         var generatedGames = generateGames(selectedMatch.participants, this.data.uniqueId)
         console.log("generated games:", generatedGames)
         this.setData({
@@ -127,12 +138,75 @@ Page({
     }
   },
 
+  checkboxChange(e) {
+    console.log('checkbox发生change事件，携带value值为：', e.detail.value)
+
+    const items = this.data.matches
+    const values = e.detail.value
+    for (let i = 0, lenI = items.length; i < lenI; ++i) {
+      items[i].checked = false
+
+      for (let j = 0, lenJ = values.length; j < lenJ; ++j) {
+        if (items[i].value === values[j]) {
+          items[i].checked = true
+          break
+        }
+      }
+    }
+
+    this.setData({
+      items: items,
+      matchId: e.detail.value
+    })
+  },
+
+  checkboxChange(e) {
+    console.log('checkbox发生change事件，携带value值为：', e.detail.value)
+
+    const items = this.data.matches
+    const values = e.detail.value
+    for (let i = 0, lenI = items.length; i < lenI; ++i) {
+      items[i].checked = false
+
+      for (let j = 0, lenJ = values.length; j < lenJ; ++j) {
+        if (items[i].value === values[j]) {
+          items[i].checked = true
+          break
+        }
+      }
+    }
+
+    this.setData({
+      items: items,
+      uniqueId: e.detail.value
+    })
+  },
+
   /**
    * Lifecycle function--Called when page load
    */
   onLoad: function (options) {
     this.setData({
-      envId: options.envId
+      envId: options.envId,
+      nickName: options.nickName
+    })
+
+    wx.cloud.callFunction({
+      name: 'quickstartFunctions',
+      config: {
+        env: this.data.envId
+      },
+      data: {
+        type: 'getPreparedMatches',
+        nickName: this.data.nickName
+      }
+    }).then((resp) => {
+      var matches = resp.result.data
+      console.log("To be start nickName",  this.data.nickName)
+      console.log("To be start matches", matches)
+      this.setData({
+        matches: matches
+      })
     })
   },
 

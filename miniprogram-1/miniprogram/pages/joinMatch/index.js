@@ -65,7 +65,8 @@ Page({
       },
       data: {
         type: 'getMatches',
-        nickName: this.data.nickName
+        nickName: this.data.nickName,
+        finished: false
       }
     }).then((resp) => {
       console.log(resp)
