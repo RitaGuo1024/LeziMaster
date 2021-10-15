@@ -16,7 +16,7 @@ exports.main = async (event, context) => {
 
     for (let i = 0; i < tempData.length; i++) {
         var current = tempData[i]
-        if(current.participants.length === parseInt(current.headcount) && !current.participants.includes(event.nickName)){
+        if(current.participants.length === parseInt(current.headcount) && current.participants.includes(event.nickName)){
             result.push(current)
         }
     }

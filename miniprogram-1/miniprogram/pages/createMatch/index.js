@@ -10,12 +10,12 @@ Page({
     matchid: '',
     nickName: '',
     date: '',
-    number: ['4', '5'],
+    number: ['2', '3', '4', '5'],
     location: ['独墅湖体育馆', '奥体', 'Bio GYM'],
     index: 0,
     locationIndex: 0,
     formData: {
-      'hc': '4',
+      'hc': '2',
       'location': '独墅湖体育馆'
     },
   },

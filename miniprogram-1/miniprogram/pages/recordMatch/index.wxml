@@ -1,81 +1,52 @@
 <!--pages/recordMatch/index.wxml-->
 
 <view class="layoutHorizontal">
-
   <view class="layoutVertical" wx:if="{{matches.length>0}}">
-    <scroll-view scroll-y="true" style="height:820rpx" bindscrolltoupper="onTopRefresh">
+    <scroll-view scroll-y="true" bindscrolltoupper="onTopRefresh">
       <view class="weui-cells weui-cells_after-title">
-      <radio-group bindchange="checkboxChange">
-        <label class="weui-cell weui-check__label" wx:for="{{matches}}" wx:key="{{item.uniqueId}}">
-          <view class="weui-cell__hd">
-            <radio value="{{item.uniqueId}}" checked="{{item.checked}}"/>
-          </view>
-          <view class="weui-cell__bd">{{item.date}}</view>
-          <view class="weui-cell__bd">{{item.location}}</view>
-          <view class="weui-cell__bd">{{item.headcount}}</view>
-        </label>
-      </radio-group>
+        <radio-group bindchange="checkboxChange">
+          <label class="weui-cell weui-check__label" wx:for="{{matches}}" wx:key="{{item.uniqueId}}">
+            <view class="weui-cell__hd">
+              <radio value="{{item.uniqueId}}" checked="{{item.checked}}" />
+            </view>
+            <view class="weui-cell__bd">{{item.date}}</view>
+            <view class="weui-cell__bd">{{item.location}}</view>
+            <view class="weui-cell__bd">{{item.headcount}}</view>
+          </label>
+        </radio-group>
       </view>
-      </scroll-view>
-    </view>
+    </scroll-view>
+  </view>
 
   <view class="btn-area">
-    <button type="default" bindtap="onStartMatch">开始比赛</button>
+    <button type="default" bindtap="onStartMatch">查看或开始比赛</button>
   </view>
-
-    <text class="fontStyle">比赛对阵</text>
-    </view>
-    <view class="cols">
+</view>
+<view class="layoutVertical">
+  <scroll-view scroll-y="true" bindscrolltoupper="onTopRefresh">
+    <view class="weui-cell weui-check__label" wx:for="{{games}}" wx:for-index="idx" wx:for-item="itemName">
       <view class="col">
-        <text>场次</text>
+        <text>{{itemName.left1}}</text>
       </view>
       <view class="col">
-        <text>左1</text>
+        <text>{{itemName.left2}}</text>
       </view>
       <view class="col">
-        <text>左2</text>
+        <input class="fontStyle" data-id="{{idx}}" value="{{itemName.leftScore}}" bindfocus="bindLeftScoreFocus" bindinput="bindLeftScoreKeyInput">0</input>
       </view>
       <view class="col">
-        <text>左分</text>
+        <input class="fontStyle" data-id="{{idx}}" value="{{itemName.rightScore}}" bindfocus="bindRightScoreFocus" bindinput="bindRightScoreKeyInput">0</input>
       </view>
       <view class="col">
-        <text>右分</text>
+        <text>{{itemName.right1}}</text>
       </view>
       <view class="col">
-        <text>右1</text>
-      </view>
-      <view class="col">
-        <text>右2</text>
+        <text>{{itemName.right2}}</text>
       </view>
     </view>
-    <view class="layoutVertical">
-      <scroll-view scroll-y="true" style="height:820rpx" bindscrolltoupper="onTopRefresh">
-        <view class="cols" wx:for="{{games}}" wx:for-index="idx" wx:for-item="itemName">
-          <view class="col">
-            <text>{{itemName.number}}</text>
-          </view>
-          <view class="col">
-            <text>{{itemName.left1}}</text>
-          </view>
-          <view class="col">
-            <text>{{itemName.left2}}</text>
-          </view>
-          <view class="col">
-            <input data-id="{{idx}}" value="{{itemName.leftScore}}" bindfocus="bindLeftScoreFocus" bindinput="bindLeftScoreKeyInput">0</input>
-          </view>
-          <view class="col">
-            <input data-id="{{idx}}" value="{{itemName.rightScore}}" bindfocus="bindRightScoreFocus" bindinput="bindRightScoreKeyInput">0</input>
-          </view>
-          <view class="col">
-            <text>{{itemName.right1}}</text>
-          </view>
-          <view class="col">
-            <text>{{itemName.right2}}</text>
-          </view>
-        </view>
-      </scroll-view>
-    </view>
-    <view class="btn-area">
-    <button type="default" bindtap="sendMatchResult">提交结果</button>
-    <text selectable="true">{{ submitted ? '比赛结束，结果已提交' : '未提交' }}</text>
-  </view>
+  </scroll-view>
+</view>
+<view class="btn-area" hidden="{{isSubmitHidden}}">
+  <button type="default" bindtap="sendMatchResult">提交结果</button>
+  <text selectable="true">{{ submitted ? '比赛结束，结果已提交' : '未提交' }}</text>
+</view>

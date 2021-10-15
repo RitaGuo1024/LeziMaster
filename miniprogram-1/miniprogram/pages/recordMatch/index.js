@@ -11,7 +11,8 @@ Page({
     submitted: false,
     inputValue: '',
     focusId: '',
-    matches: []
+    matches: [],
+    isSubmitHidden: true
   },
 
   bindLeftScoreFocus: function (event) {
@@ -91,13 +92,16 @@ Page({
           console.log("finsihed games:", finishedGames)
           this.setData({
             games: finishedGames.games,
+            isSubmitHidden: true,
             submitted: true
           })})
       } else {
         var generatedGames = generateGames(selectedMatch.participants, this.data.uniqueId)
         console.log("generated games:", generatedGames)
         this.setData({
-          games: generatedGames
+          games: generatedGames,
+          isSubmitHidden: false,
+          submitted: false
         })
       }
       wx.hideLoading()
@@ -362,6 +366,46 @@ function generateGames(array, uniqueId) {
         "rightScore": 0,
         "uniqueId": uniqueId,
         "number": 3
+      }]
+    console.log("Generated games: ", result)
+  } else if (array.length === 3) {
+    var a = shuffle(array)
+    console.log("shuffled array", a)
+    result = [
+      {
+        "left1": a[0],
+        "leftScore": 0,
+        "right1": a[1],
+        "rightScore": 0,
+        "uniqueId": uniqueId,
+        "number": 1
+      }, {
+        "left1": a[0],
+        "leftScore": 0,
+        "right1": a[2],
+        "rightScore": 0,
+        "uniqueId": uniqueId,
+        "number": 2
+      }, {
+        "left1": a[1],
+        "leftScore": 0,
+        "right1": a[2],
+        "rightScore": 0,
+        "uniqueId": uniqueId,
+        "number": 3
+      }]
+    console.log("Generated games: ", result)
+  } else if (array.length === 2) {
+    var a = shuffle(array)
+    console.log("shuffled array", a)
+    result = [
+      {
+        "left1": a[0],
+        "leftScore": 0,
+        "right1": a[1],
+        "rightScore": 0,
+        "uniqueId": uniqueId,
+        "number": 1
       }]
     console.log("Generated games: ", result)
   }
