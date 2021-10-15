@@ -75,11 +75,20 @@ Page({
       console.log("response: ", resp)
       var selectedMatch = resp.result.data[0]
       console.log(selectedMatch)
-      var generatedGames = generateGames(selectedMatch.participants, this.data.uniqueId)
-      console.log("generated games:", generatedGames)
-      this.setData({
-        games: generatedGames
-      })
+      if (selectedMatch.finished) {
+        var generatedGames = generateGames(selectedMatch.participants, this.data.uniqueId)
+        console.log("generated games:", generatedGames)
+        this.setData({
+          games: generatedGames
+        })
+      }
+      else {
+        var generatedGames = generateGames(selectedMatch.participants, this.data.uniqueId)
+        console.log("generated games:", generatedGames)
+        this.setData({
+          games: generatedGames
+        })
+      }
       wx.hideLoading()
     }).catch((e) => {
       this.setData({

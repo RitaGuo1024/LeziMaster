@@ -12,6 +12,7 @@ const getMatchForRecording = require('./getMatchForRecording/index')
 const submitMatchResult = require('./submitMatchResult/index')
 const getMatches = require('./getMatches/index')
 const getMyMatches = require('./getMyMatches/index')
+const getMyGamesByMatchId = require('./getMyGamesByMatchId/index')
 
 
 // 云函数入口函数
@@ -45,5 +46,7 @@ exports.main = async (event, context) => {
       return await getMatches.main(event, context)
     case 'getMyMatches':
       return await getMyMatches.main(event, context)
+    case 'getMyGamesByMatchId':
+      return await getMyGamesByMatchId.main(event, context)
   }
 }
